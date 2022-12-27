@@ -1,0 +1,214 @@
+
+
+
+
+\documentclass{article}
+
+\usepackage[margin=1.5in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,hyperref}
+\usepackage{physics}
+\usepackage{upgreek}
+\usepackage{xcolor}
+\usepackage{halloweenmath}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{dirtytalk}
+\usepackage{graphics}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Log}{\text{Log}\:}
+\newcommand{\Re}{\text{Re}\:}
+\newcommand{\Im}{\text{Im}\:}
+\newcommand{\im}{\text{im}\:}
+\newcommand{\coker}{\text{coker}\:}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{claim}[2][Claim]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+
+\begin{document}
+
+\large 
+
+\vspace{0.05in}
+
+Throughout this homework, coefficients are in a field $\textbf{k}$, ie. $H_n(X) = H_n(X, \textbf{k})$ and $C_n(X) = C_n(X,\textbf{k}).$ I roughly follow the (terse!) proofs in \textit{Infinite Cyclic Coverings} by John Milnor. 
+\\ \\
+1. (i) We consider the sequence 
+\begin{equation}
+\begin{tikzcd}
+0 \ar[r] &C_*(\widehat{X}) \ar[r, "t-1"] &C_*(\widehat{X}) \ar[r, "p_*"] &C_*(X) \ar[r] &0
+\end{tikzcd}
+\end{equation}
+%why do the squares commute????????
+where $p_*$ is induced from the covering map $\widehat{X} \xrightarrow{p} X$. First we show exactness of each row. As mentioned in class, $\Pi$ acts on $C_n(\widehat{X})$ by permuting generators, so the map $C_n(\widehat{X}) \xrightarrow{t-1} C_n(\widehat{X})$ induced by the action of $t-1$ must be injective. As $\widehat{X}/\Pi \cong X$, the covering map $\widehat{X} \xrightarrow{p} X$ is cellular, so the induced map $C_n(\widehat{X}) \to C_n(X)$ is surjective. Finally, if $e_i^n \in C_n(\widehat{X})$ then 
+\[
+(t-1)e_i^n = te_i^n - e_i^n = e_{i+1}^n - e_i^n \in \ker p_*
+\]
+as $e_i^n$ and $e_{i+1}^n$ project to the same cell in $X$, and conversely if $p_*(z) = 0$ for some $z \in C_n(\widehat{X})$ then $z$ must be of the form $\sum_j (t-1)e_j^n$ as $\widehat{X}/\Pi \cong X$, so $\ker(p_*) = \im(t-1)$. \\ \\
+To show (1) is exact it remains to show each square in the diagram below commutes (for each $n$). I don't know how to do this.
+\[
+\begin{tikzcd}
+  0 \ar[r] &C_n(\widehat{X}) \ar[d, "d_{\widehat{X}}"] \ar[r, "t-1"] &C_n(\widehat{X}) \ar[d, "d_{\widehat{X}}"] \ar[r, "p_*"] &C_n(X) \ar[d, "d_X"] \ar[r] &0 \\
+  0 \ar[r] &C_{n-1}(\widehat{X}) \ar[r, "t-1"] &C_{n-1}(\widehat{X}) \ar[r, "p_*"] &C_{n-1}(X) \ar[r] &0
+\end{tikzcd}
+\]
+\\ \\
+Here is a statement of the Snake Lemma. \\ \\
+\textbf{Lemma} (snek) \textit{Let $A$ be a commutative ring, and let} 
+\begin{equation}
+\begin{tikzcd}
+&P \ar[d, "\alpha"] \ar[r, "\varphi"] &Q \ar[r, "\psi"] \ar[d, "\beta"] &R \ar[d, "\gamma"] \ar[r] &0 \\
+0 \ar[r] &P' \ar[r, "\varphi'"] &Q' \ar[r, "\psi'"] &R'
+\end{tikzcd}
+\end{equation}
+\textit{be a commutative diagram of $A$-modules with exact rows. Then there is an $A$-linear map $\delta: \ker \gamma \to \coker \alpha$ such that the sequence} 
+\begin{equation}
+\begin{tikzcd}
+\ker \alpha \ar[r] &\ker \beta \ar[r] &\ker \gamma \ar[r, "\delta"] &\coker \alpha \ar[r] &\coker \beta \ar[r] &\coker \gamma
+\end{tikzcd}
+\end{equation}
+\textit{is exact. Moreover, if $\varphi$ is injective then the first map $\ker \alpha \to \ker \beta$ is injective, and if $\psi'$ is surjective, the last map $\coker \beta \to \coker \gamma$ is surjective. 
+The exact sequence (3) is functorial in the diagram (2).} \\ \\
+%ref
+Expanding (1) to make things more visually clear
+\begin{equation}
+\begin{tikzcd}
+&0 \ar[d] &0 \ar[d] &0 \ar[d] \\
+0 \ar[r] &C_0(\widehat{X}) \ar[d] \ar[r, "t-1"] &C_0(\widehat{X}) \ar[d] \ar[r] &C_0(X) \ar[d] \ar[r] &0 \\
+0 \ar[r] &C_1(\widehat{X}) \ar[d] \ar[r, "t-1"] &C_1(\widehat{X}) \ar[d] \ar[r] &C_1(X) \ar[d] \ar[r] &0 \\
+0 \ar[r] &C_2(\widehat{X}) \ar[d] \ar[r, "t-1"] &C_2(\widehat{X}) \ar[d] \ar[r] &C_2(X) \ar[d] \ar[r] &0 \\
+&\vdots &\vdots &\vdots
+\end{tikzcd}
+\end{equation}
+we apply the snake lemma to the $0^{\text{th}}$ row to get an exact sequence 
+\begin{align*}
+0 \to Z_0(\widehat{X}) \xrightarrow{t-1} Z_0(\widehat{X}) \to &Z_0(X) \xrightarrow{\partial} \\ &C_1(\widehat{X})/B_0(\widehat{X}) \xrightarrow{t-1} C_1(\widehat{X})/B_0(\widehat{X}) \to C_1(X) / B_0(X) \to 0 
+\end{align*}
+and in general apply the snake lemma to the $n^{\text{th}}$ row to get an exact sequence 
+\begin{align*}
+0 \to Z_n(\widehat{X}) \xrightarrow{t-1} Z_n(\widehat{X}) \to &Z_n(X) \xrightarrow{\partial} \\ &C_{n+1}(\widehat{X})/B_n(\widehat{X}) \xrightarrow{t-1} C_{n+1}(\widehat{X})/B_n(\widehat{X}) \to C_{n+1}(X) / B_n(X) \to 0 
+\end{align*}
+So, for each $n$ we have a commutative diagram with exact rows 
+\begin{equation}
+    \begin{tikzcd}
+    &C_{n+1}(\widehat{X})/B_n(\widehat{X}) \ar[d] \ar[r] &C_{n+1}(\widehat{X})/B_n(\widehat{X}) \ar[d] \ar[r] &C_{n+1}(X)/B_n(X) \ar[d] \ar[r] &0 \\
+    0 \ar[r] &Z_n(\widehat{X}) \ar[r] &Z_n(\widehat{X}) \ar[r] &Z_n(X)
+    \end{tikzcd}
+\end{equation}
+and applying the snake lemma to (5) for each $n$ yields the long exact sequence 
+\begin{equation}
+    \begin{tikzcd}
+    \hdots \ar[r, "\partial"] &H_n(\widehat{X}) \ar[r, "t-1"] &H_n(\widehat{X}) \ar[r, "p_*"] &H_n(X) \ar[r, "\partial"] &H_{n-1}(\widehat{X}) \ar[r, "t-1"] &\hdots
+    \end{tikzcd}
+\end{equation}
+\\ \\
+(ii) Suppose that $X$ has the homology of a circle. First, we have $H_0(\widehat{X}) \cong \textbf{k}$ since $\widehat{X}$ is connected, so $H_0(\widehat{X})$ has no $\textbf{k}\Pi$-free summands. If $i \geq 2$ then $H_i(X) = 0$, so we get an exact sequence 
+\[
+H_i(\widehat{X}) \xrightarrow{t-1} H_i(\widehat{X}) \to 0
+\]
+which means we can write each $x \in H_i(\widehat{X})$ as $(t-1)y$ for some $y \in H_i(\widehat{X})$, so $H_i(\widehat{X})$ does not have any $\textbf{k}\Pi$-free summand. \\ \\
+For $i=1$, as $X$ is a $\textbf{k}HS^1$ the long exact sequence (6)
+ends like 
+\[
+\begin{tikzcd}
+\hdots \ar[r, "0"] &H_1(X) \ar[r, "\sim"] &H_0(\widehat{X}) \ar[r, "0"] &H_0(\widehat{X}) \ar[r, "\sim"] &H_0(X) \ar[r] &0
+\end{tikzcd}
+\]
+so the situation is similar to the one described for $i\geq 2$ above. From this $H_i(\widehat{X})$ is finitely generated as a $\textbf{k}$-vector space for all $i$.
+\\ \\
+(iii) As the maps induced on chains by $t-1$ and $p$ are injective and surjective, respectively, we break up the long exact sequence (6) into short exact sequences 
+\[
+\begin{tikzcd}
+  &&\vdots  \\
+0 \ar[r] &H_i(\widehat{X})  \ar[r, "t-1"] &H_i(\widehat{X}) \ar[r] &H_i(X) \ar[r] &0 \\ 
+0 \ar[r] &H_{i+1}(\widehat{X}) \ar[r, "t-1"] &H_{i+1}(\widehat{X}) \ar[r] &H_{i+1}(X) \ar[r] &0 \\
+&&\vdots
+\end{tikzcd}
+\]
+which split as the homology modules are finitely generated $\textbf{k}$-vector spaces by (ii). So, for each $i$ we have
+\[ 
+\rank H_i(\widehat{X}) = \rank H_i(\widehat{X}) + \rank H_i(X)
+\]
+thus $\chi(\widehat{X}) = \chi(\widehat{X}) + \chi(X)$, so $\chi(X) =0$.
+\\ \\
+2. (i) We write $\pi_1 X$ with the presentation $\pi_1X = \langle a,b \: | \: a^2b^{-2} \rangle$, with $a$ and $b$ pictured below. We define a surjective homomorphism $\pi_1X \xrightarrow{\varphi} \Pi$ by $a \mapsto t$ and $b \mapsto t$. From this we see that 
+\[
+\pi_1\widehat{X} \cong \ker \varphi  = \langle a^i b^{-i} \rangle_{i\in \Z} .
+\]
+
+\[
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Square [id:dp955509703124505] 
+\draw   (100,65) -- (249.27,65) -- (249.27,214.27) -- (100,214.27) -- cycle ;
+\draw   (172,57.4) .. controls (175.76,61.73) and (179.51,64.33) .. (183.27,65.2) .. controls (179.51,66.07) and (175.76,68.67) .. (172,73) ;
+\draw   (167,206.4) .. controls (170.76,210.73) and (174.51,213.33) .. (178.27,214.2) .. controls (174.51,215.07) and (170.76,217.67) .. (167,222) ;
+\draw   (257.33,128.43) .. controls (253.07,132.26) and (250.54,136.06) .. (249.73,139.83) .. controls (248.8,136.09) and (246.13,132.39) .. (241.73,128.71) ;
+\draw   (92.8,138.79) .. controls (97.15,135.05) and (99.77,131.32) .. (100.67,127.57) .. controls (101.51,131.33) and (104.09,135.09) .. (108.4,138.88) ;
+%Shape: Free Drawing [id:dp28883194448679406] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=3] [line join = round][line cap = round] (130.27,93.4) .. controls (130.27,93.73) and (130.27,94.07) .. (130.27,94.4) ;
+%Shape: Square [id:dp13586266745990183] 
+\draw   (360,64) -- (509.27,64) -- (509.27,213.27) -- (360,213.27) -- cycle ;
+\draw   (432,56.4) .. controls (435.76,60.73) and (439.51,63.33) .. (443.27,64.2) .. controls (439.51,65.07) and (435.76,67.67) .. (432,72) ;
+\draw   (427,205.4) .. controls (430.76,209.73) and (434.51,212.33) .. (438.27,213.2) .. controls (434.51,214.07) and (430.76,216.67) .. (427,221) ;
+\draw   (517.33,127.43) .. controls (513.07,131.26) and (510.54,135.06) .. (509.73,138.83) .. controls (508.8,135.09) and (506.13,131.39) .. (501.73,127.71) ;
+\draw   (352.8,137.79) .. controls (357.15,134.05) and (359.77,130.32) .. (360.67,126.57) .. controls (361.51,130.33) and (364.09,134.09) .. (368.4,137.88) ;
+%Shape: Free Drawing [id:dp9086412410839277] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=3] [line join = round][line cap = round] (390.27,92.4) .. controls (390.27,92.73) and (390.27,93.07) .. (390.27,93.4) ;
+%Curve Lines [id:da1648435399392183] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (102.27,180.4) .. controls (142.27,150.4) and (115.27,130.4) .. (129.27,94.4) ;
+%Curve Lines [id:da9175812338362591] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (129.27,94.4) .. controls (183.27,91.4) and (196.27,100.4) .. (248.27,96.4) ;
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ] (116.67,140.6) .. controls (121.11,136.97) and (123.82,133.3) .. (124.8,129.57) .. controls (125.56,133.35) and (128.05,137.17) .. (132.26,141.06) ;
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ] (189.47,89.81) .. controls (193.52,93.87) and (197.44,96.2) .. (201.25,96.81) .. controls (197.57,97.94) and (194.01,100.79) .. (190.56,105.37) ;
+%Curve Lines [id:da9793271315526727] 
+\draw [color={rgb, 255:red, 189; green, 16; blue, 224 }  ,draw opacity=1 ]   (410.27,212.4) .. controls (418.27,173.4) and (415.27,155.4) .. (509.27,158.4) ;
+%Curve Lines [id:da6179121448498427] 
+\draw [color={rgb, 255:red, 189; green, 16; blue, 224 }  ,draw opacity=1 ]   (361,111) .. controls (396.27,91.4) and (393.27,94.4) .. (394.27,65.4) ;
+\draw  [color={rgb, 255:red, 189; green, 16; blue, 224 }  ,draw opacity=1 ] (370.4,98.49) .. controls (376.03,99.61) and (380.58,99.36) .. (384.09,97.75) .. controls (381.65,100.74) and (380.28,105.09) .. (379.96,110.82) ;
+\draw  [color={rgb, 255:red, 189; green, 16; blue, 224 }  ,draw opacity=1 ] (428.99,160.97) .. controls (434.35,163.02) and (438.88,163.55) .. (442.6,162.55) .. controls (439.7,165.08) and (437.61,169.14) .. (436.33,174.73) ;
+
+% Text Node
+\draw (162,96.4) node [anchor=north west][inner sep=0.75pt]    {$a$};
+% Text Node
+\draw (369,80.4) node [anchor=north west][inner sep=0.75pt]    {$b$};
+% Text Node
+\draw (401,174.4) node [anchor=north west][inner sep=0.75pt]    {$b$};
+
+
+\end{tikzpicture}
+\]
+If we tile $\R^2$ with these squares to get the universal cover of $X$, we note that $a^ib^{-i}$ corresponds to moving the basepoint down by $i$ squares. From covering space theory this means that $\widehat{X}$ corresponds to a $1$-by-$\Z$ vertical strip in the tiling, which we can think of as a Mobius strip with infinite width, thus having homotopy type $S^1$. Therefore $H_i(\widehat{X}) = 0$ for $i >1$. As a $\textbf{k}\Pi$ module 
+\[
+H_0(\widehat{X}) \cong \textbf{k}[t,t^{-1}]/(t-1)
+\]
+and \[
+H_1(\widehat{X}) \cong \textbf{k}[t,t^{-1}]/(t+1).
+\]
+\\ \\
+(ii) We know $\pi_1X = \langle a \rangle$ where $a$ is a generator for $\pi_1 S^1 \cong \Z$. So, we get the identity map $\pi_1 X \to \Pi = \langle a \rangle$, thus $\pi_1\widehat{X}$ is trivial so $\widehat{X}$ is the universal cover of $X$, thus $\widehat{X}$ has homotopy type $S^2$. As $X$ has the homology of $S^1$ and $\Pi$ acts trivially on $X$ we must have 
+\[
+H_0(\widehat{X}) \cong \textbf{k}[a,a^{-1}]/(a-1) \cong H_1(\widehat{X})
+\]
+as $\textbf{k}\Pi$-modules.
+\end{document}

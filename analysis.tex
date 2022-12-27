@@ -1,0 +1,189 @@
+
+
+
+\documentclass{article}
+
+\usepackage[margin=1.5in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,hyperref}
+\usepackage{physics}
+\usepackage{upgreek}
+\usepackage{xcolor}
+\usepackage{halloweenmath}
+\usepackage{mathtools}
+\usepackage[dvipsnames]{xcolor}
+
+\newcommand{\R}{\mathbb{R}}  
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Log}{\text{Log}\:}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{claim}[2][Claim]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+
+\begin{document}
+
+\large 
+
+\vspace{0.05in}
+Throughout $\psi_{\alpha}(z) = \frac{\alpha - z}{1-\overline{\alpha}z}$ denotes the Blaschke factor $\D \to \D$ swapping $\alpha $ and $z$. Also, I do not remember if we agreed on a convention in class, but I will denote $\N = \{1,2,...\}$, so that $0 \not\in \N$. \\ \\
+\noindent 1. (a) $\implies$ (b): Suppose that $f_n \to f$ uniformly on compact sets, so in particular $\lim_{n\to \infty} d_k(f_n, f) = 0$ for each $k \in \N$. Let $d_{\infty}(f_n,f)$ denote $\sup_{z\in \Omega} |f_n(z) - f(z)|$, which may be infinite. We remark that, by the definition of the sequence $(K_n)_{n\in \N}$ we have 
+$$
+d_1(f_n,f) \leq d_2(f_n,f) \leq ... \leq d_{\infty} (f_n,f).
+$$
+We write $d(f_n,f)$ as a finite sum (denoted by $A_n$) plus its tail (denoted by $B_n$), with $N$ some natural number:
+$$
+d(f_n,f) = \sum_{k=1}^{N-1} \frac{d_k(f_n,f)}{1+d_k(f_n,f)} 2^{-k} + \sum_{k=N}^{\infty} \frac{d_k(f_n,f)}{1+d_k(f_n,f)}2^{-k} = A_n + B_n.
+$$
+Since $\lim_{n\to \infty} d_k(f_n,f) = 0$ we have $\lim_{n\to \infty} A_n = 0$. For $B_n$ (we have omitted absolute value signs in these calculations since all terms are nonnegative),
+$$
+B_n \leq \frac{d_N(f_n,f)}{1+d_{\infty}(f_n,f)} \sum_{k=N}^{\infty} 2^{-k} \to 0.
+$$
+Thus $\lim_{n\to \infty}d(f_n,f) = 0$. \\ \\
+(b) $\implies$ (a): Suppose that $$\lim_{n\to \infty} \sum_{k=1}^{\infty} \frac{d_k(f_n,f)}{1+d_k(f_n,f)}2^{-k} = 0.$$ As a series of nonnegative terms, we have
+$$
+\sum_{k=1}^{\infty} \frac{d_k(f_n,f)}{1+d_k(f_n,f)}2^{-k} \geq \frac{d_N(f_n,f)}{1+d_N(f_n,f)}
+$$
+for any $N\in \N$. Thus, 
+\begin{equation}
+    \lim_{n\to \infty} \frac{d_N(f_n,f)}{1+d_N(f_n,f)} = 0.
+\end{equation}
+The function $f\colon[0,\infty) \to \R$ defined by $f(x) = \frac{x}{1+x}$ is only zero at $x=0$, and $\lim_{x \to \infty} f(x) = 1$. Therefore, (1)
+implies that $\lim_{n\to \infty} d_N(f_n,f) = 0$, ie. $f_n\to f$ uniformly on $K_N$. Since this is true for any $N\in \N$, and for any compact $K\subset \Omega$ we have $K_N \supset K$ for some $N$, we conclude that $f_n\to f$ uniformly on compact subsets of $\Omega$.
+\\ \\
+2. Since $g$ is nonconstant and holomorphic, $z_0$ is an isolated zero of $g$, so we can write 
+\begin{equation}
+g(z) = (z-z_0)^m h(z)
+\end{equation}
+for all $z$ in an open neighbourhood $U_1$ of $z_0$, and where $h:U_1 \to \C$ is holomorphic and nonvanishing. Take an open $U_2 \subset U_1$ such that $z_0 \in U_2$ and $U_2$ is simply connected, then we can define a holomorphic function $H:U_2 \to \C$ such that $e^{H(z)} = h(z)$ for all $z\in U_2$. We then define $\phi: U_2 \to \C$ by  
+$$
+\phi(z) = (z-z_0)e^{H(z)/m}
+$$
+so that $\phi^m(z) = g(z)$ by (2).
+We then have 
+$$\phi'(z) = (1-(z-z_0)\frac{H'(z)}{m})e^{H(z)/m}.$$
+Then $\phi'(z_0) \neq 0$, so by problem 4 of homework 4 we find an open disk $U_3\subset U_2$ centred at $z_0$ such that $\phi|_{U_3}$ is injective. By the open mapping theorem $\text{im}\:( \phi|_{U_3})$ contains a disk $D_r(z_0)$ for some $r>0$, so taking $V$ to be $(\phi|_{U_3})^{-1}(D_r(z_0))$ we see that $\phi:V \to D_r(z_0)$ satisfies properties (a) and (b).
+\\ \\
+3. (a) Taking the hint, define $\Psi:\D \to \D$ by $\Psi = \psi_{f(w)} \circ f \circ \psi_w^{-1}$. As a composition of holomorphic functions $\Psi$ is holomorphic, and 
+$$
+\Psi(0) = (\psi_{f(w)} \circ f \circ \psi_{w}^{-1})(0) = (\psi_{f(w)} \circ f)(w) = \psi_{f(w)}(f(w)) = 0. 
+$$
+By the Schwarz lemma, $|\Psi(z)|\leq |z|$ for all $z\in D$, ie. 
+\begin{equation}
+\Big| \frac{f(\psi_w^{-1}(z))-f(w)}{1-\overline{f(w)}f(\psi_{w}^{-1}(z))} \Big| \leq |z|.
+\end{equation}
+By substituting $z$ with $\psi_w(z)$ in (3)
+we obtain $\rho(f(z), f(w)) \leq \rho(z,w)$. If $\varphi: \D \to \D$ is an automorphism, we apply the inequality twice:
+$$\
+\rho(z_1,z_2) = \rho ((\varphi^{-1} \circ \varphi)(z_1), (\varphi^{-1} \circ \varphi)(z_2)) \leq \rho(\varphi(z_1),\varphi(z_2)) \leq \rho(z_1, z_2),
+$$
+so $\rho(\varphi(z_1),\varphi(z_2)) = \rho(z_1,z_2)$.
+\\ \\
+(b) By (a), for any $w,z \in \D$ we have 
+$$
+\Big| \frac{f(z) -f(w)}{1-\overline{f(z)}f(w)} \Big| \leq \Big| \frac{z-w}{1-\overline{z}w} \Big|. 
+$$
+Rearrange to get
+\begin{equation}
+    \Big| \frac{f(z)-f(w)}{z-w} \frac{1}{1-\overline{f(z)}f(w)}\Big| \leq \Big| \frac{1}{1-\overline{z}w} \Big|, 
+\end{equation}
+so letting $w\to z$ in (4)
+we see that 
+$$
+\frac{|f'(z)|}{1-|f(z)|^2} \leq \frac{1}{1-|z|^2}.
+$$
+\\\\
+4. (a) Let $\gamma$ be a curve from $z_1$ to $z_2$. By the chain rule, we have $$\int_0^1 \norm{(f\circ \gamma)'(t)}_{(f \circ \gamma)(t)} dt \leq \int_0^1 \norm{\gamma'(t)}_{\gamma(t)}dt.$$ Taking the infimum of both sides over the set of curves $\gamma$, and then noting that the infimum of the integral on the LHS over all curves from $z_1$ to $z_2$ can only decrease, as there may be some not of the form $f\circ \gamma$, we see that $d(f(z_1), f(z_2) \leq d(z_1,z_2)$.
+\\ \\
+(b) Let $\varphi:\D \to \D$ be an automorphism. Using part (a),
+$$
+d(z_1,z_2) = d((\varphi^{-1} \circ \varphi)(z_1), (\varphi^{-1} \circ \varphi)(z_2)) \leq d(\varphi(z_1),\varphi(z_2)) \leq d(z_1,z_2),
+$$
+so $d(\varphi(z_1),\varphi(z_2)) = d(z_1,z_2)$. \\ \\Conversely, suppose $\varphi:\D \to \D$ is a function such that $d(\varphi(z_1),\varphi(z_2)) = d(z_1,z_2)$.  
+\\ \\
+(c) We construct a family of automorphisms $\D \to \D$ of the form
+$$\varphi_{z_1,z_2} = e^{-i\theta}\psi_{z_1},$$ where $\theta = \text{arg}(\psi_{z_1}(z_2)$. We see that $\varphi_{z_1,z_2}(z_1) = 0$ and $\varphi_{z_1,z_2}(z_2) = |\psi_{z_1}(z_2)|$. Since $|\psi_{\alpha}|$ is continuous in $\alpha$ (homework 1, composed with $z\mapsto |z|$), by the intermediate value theorem each $s \in [0,1)$ is of the form $|\psi_{z_1}(z_2)|$ for some $z_1, z_2 \in \D$.  
+\\ \\
+(d) We first show that $d(0,s) \leq \frac{1}{2} \log (\frac{1+s}{1-s})$ by calculating the integral for $\gamma(t) = st$, the straight line from 0 to $s$. 
+\begin{align*}
+    \int_0^1 \norm{\gamma'(t)}_{\gamma(t)} dt &= \int_0^1 \frac{s}{1-(st)^2}dt \\
+    &=\frac{s}{2}\int_0^1 \Big(\frac{1}{1+st} + \frac{1}{1-st}\Big)dt \\
+    &= \frac{1}{2} \log \Big(\frac{1+s}{1-s}\Big).
+\end{align*}
+Next we show $d(0,s) \geq \frac{1}{2}\log (\frac{1+s}{1-s})$. We write $\gamma(t) = x(t)+iy(t)$ and note that the integral is minimized if $x'(t)$ is monotone and does not change sign. Thus 
+\begin{equation}
+\int_0^1 \frac{|\gamma'(t)}{1+|\gamma(t)|^2}dt = \int_0^1 \frac{x'(t) + iy'(t)}{1+x(t)^2+y(t)^2}dt \leq \int_0^1 \frac{|x'(t)|}{1+x(t)^2}dt.
+\end{equation}
+We substitute $\eta = x(t)$ so that (5)
+equals 
+$$
+\int_0^s \frac{d\eta}{1-\eta^2}dt = \frac{1}{2}\log(\frac{1+s}{1-s})
+$$
+by the same calculation as above. Thus $d(0,s) = \frac{1}{2}\log(\frac{1+s}{1-s}).$
+\\ \\
+(e) By (b), $d$ is preserved by automorphisms, so 
+$$
+d(z_1,z_2) = d(\varphi_{z_1,z_2}(z_1),\varphi_{z_1,z_2}(z_2)) = d(0,|\psi_{z_1}(z_2)|) = \frac{1}{2}\log(\frac{1+|\psi_{z_1}(z_2)|}{1-|\psi_{z_1}(z_2)|}).
+$$
+5. By proposition 1.1 in chapter 8 of the textbook, $f'(z) \neq 0$ for all $z\in \C$. If $f$ is a polynomial, then $f$ must have degree 1, otherwise $f'$ has a zero by the fundamental theorem of algebra. Therefore it suffices to show $f$ is a polynomial of any degree. 
+\\ \\
+Denote the image of $f$ by $U$. Since $f$ is holomorphic and injective, $U$ is simply connected, and by the open mapping theorem $U$ is open, so if $U$ is a proper subset of $\C$ then by the Riemann mapping theorem there exists a conformal map $\phi: U \to \D$. Then we obtain a holomorphic injective map $\phi \circ f: \C \to \D$, a contradiction to Liouville's theorem. Thus $U = \C$. In particular, there exists a unique zero of $f$, and so we assume without loss of generality that $f(0) =0$, denote the multiplicity of this zero by $n \in \N$. Denote the positively oriented unit circle by $C$ and the negatively oriented unit circle by $C^{\leftarrow}$. By the argument principle we have
+\begin{equation}
+n = \frac{1}{2\pi i} \int_C \frac{f'(z)}{f(z)}dz,
+\end{equation}
+and so a short calculation shows, where $g = f(\frac{1}{z})$, that
+\begin{align*}
+    \frac{1}{2\pi i} \int_C \frac{g'(z)}{g(z)}dz &= -\frac{1}{2\pi i} \int_C \frac{1}{z^2} \frac{f'(\frac{1}{z})}{f(\frac{1}{z})}dz \\
+    &= \frac{1}{2\pi i} \int_{C^{\leftarrow}} \frac{f'(\zeta)}{f(\zeta)}d\zeta &\text{where } \zeta = \frac{1}{z} \\
+    &= -n &\text{by } (2).
+\end{align*}
+Since $g$ has no zeros inside or on $C$, by the argument principle $g$ has a pole of order $n$ at 0, so by problem 5 (b) of homework 3, $f$ is a polynomial of degree $n$, completing the proof. 
+\\ \\
+6. If $\Omega = \C$ then by problem 5 we have $f_1(z) = \alpha_1 z + \beta_1$ and $f_2 = \alpha_2 z + \beta_2 $ for some $\alpha_1,\alpha_2,\beta_1,\beta_2 \in \C \backslash \{0\}$. Then $f_1(a) = f_2(a)$ and $f_1(b)=f_2(b)$ imply $a = \frac{\beta_2-\beta_1}{\alpha_1-\alpha_2} = b$, a contradiction to $a$ and $b$ being distinct. Thus $\Omega$ is a proper subset of $\C$.
+\\ \\
+As $\Omega$ is proper and simply connected, by the Riemann mapping theorem there exists a conformal map $F: \Omega \to \D$ such that $F(f_1(a)) = 0$. We define two maps $\varphi_1, \varphi_2: \D \to \D$ by 
+$$
+\varphi_j = F\circ f_j \circ F^{-1} \circ \psi_{F(a)},
+$$
+where $j = 1,2$. As a composition of conformal maps, $\varphi_j$ is an automorphism, so 
+$$
+\varphi_j = e^{i\theta_j} \psi_{\zeta_j}
+$$
+for some $\theta_j \in [0,2\pi)$ and $\zeta_j \in \D$. However, we calculate $\varphi_j(0) = 0$, so $\varphi_j$ is a rotation. Then, because $\varphi_1$ and $\varphi_2$ agree at $(\psi_{F(a)} \circ F)(b)$, and are nonzero at that point, we must have $\varphi_1 = \varphi_2$. Composing both sides of this inequality with $\psi_{F(a)} \circ F$ on the right and $F^{-1}$ on the left, we obtain $f_1 = f_2$.
+\\ \\
+7. By Montel's theorem it suffices to show $\mathcal{G}$ is uniformly bounded on compact subsets of $U$. Let $K \subset U$ be compact, and let $\gamma$ be a rectifiable loop in $U \backslash K$ such that any homotopy from $\gamma$ to a point contains all of $K$ in its image (ie. $K$ is in the region bounded by $\gamma$), and such that there exists an $a>0$ such that $\text{dist}(z, K) \geq a$ for all $z\in \gamma$.  Denote the length of $\gamma$ by $L$. Since $f\in \mathcal{F}$ and $\mathcal{F}$ is a normal family, by Montel's theorem there exists an $M>0$, independent of $f$, such that $\sup_{z\in U}|f(z)| \leq M$. Let $z_0 \in K$, then by the Cauchy integral formula and ML-estimate we have
+\begin{align*}
+    |f'(z_0)| &= \Big|\frac{1}{2\pi i} \int_{\gamma} \frac{f(z)}{(z-z_0)^2}dz\Big| \\ 
+    &\leq \frac{L}{2\pi} \max_{z\in \gamma}\Big| \frac{f(z)}{(z-z_0)^2}\Big| \\
+    &\leq \frac{L}{2\pi}\frac{M}{a^2}.
+\end{align*}
+Since this bound is independent of $f$ or $z_0$, $f'$ is uniformly bounded on $K$, completing the proof. 
+\\ \\
+8. Let $f_n:\D \to \C$ be defined by $f_n= z+nz^2$ for each $n\in \N$. Evidently we have $f_n$ holomorphic, $f_n(0) =0$, and $f'(0) = 1$ for each $n\in \N$, so $\{f_n\}_{n\in \N}$ is a sequence in $\mathcal{F}$. Applying the results of problem 7 twice, we see that if $\mathcal{H} = \{f'' \:|\: f \in \mathcal{F}\}$ is not a normal family then neither is $\mathcal{F}$. Indeed, the sequence $\{f_n'' = 2n\}_{n\in \N}$ in $\mathcal{H}$ has no convergent subsequence, since  every subsequence is unbounded. Thus $\mathcal{F}$ is not a normal family. 
+\\ \\
+9. We imitate the proof in the textbook of the Hurwitz theorem. 
+Suppose that there is a $z\in \Omega$ such that $f(z) = 0$. If $f$ is not identically zero then $z$ is an isolated zero, so choose a circle $\gamma$ (positively oriented) with $z$ in its interior, small enough so that $f(\zeta) \neq 0$ for all $\zeta \neq z$ in an open set containing $\gamma$ and its interior. Then $\frac{1}{f_n} \to \frac{1}{f}$ and $f_n' \to f'$ uniformly on $\gamma$
+so 
+$$
+\int_{\gamma} \frac{f_n'(\zeta)}{f_n(\zeta)}d\zeta \to \int_{\gamma} \frac{f'(\zeta)}{f(\zeta)}d\zeta.
+$$
+However, this is a contradiction since the argument principle implies
+$$
+\frac{1}{2\pi i} \int_{\gamma} \frac{f_n'(\zeta)}{f_n(\zeta)} = 0 \hspace{0.5cm} \text{for all } n\in \N, \text{ and } \hspace{0.5cm} \frac{1}{2\pi i} \int_{\gamma} \frac{f'(\zeta)}{f(\zeta)}d\zeta \geq 1.
+$$
+Therefore $f$ is either nonvanishing or identically zero on $\Omega$.
+\end{document}
