@@ -13,9 +13,8 @@ They are there mostly to say "hey, prospective employers! I can render math!".
 ## Future items
 
 * Test `.tex` files on compilers other than Overleaf
-* Find the questions from the homework and include them
 
 ## Random
 
-* If you write math with latex, you should check out `mathcha.io`. If you're a natural at hand-coding `TikZ`, I 
-respect you a lot, but this is just so much easier. 
+* If you write math with latex, you should check out `mathcha.io`. If you're a natural at hand-coding Tikz
+that's very impressie, but this is just so much easier. 
