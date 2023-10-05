@@ -1,28 +1,40 @@
 \documentclass{article}
 
-% Some useful packages, and some fun packages
+%packages useful for math (and halloweenmath, the best latex package)
 \usepackage[margin=1.5in]{geometry}
-\usepackage{amsmath,amsthm,amssymb,hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage{amsmath,amsthm,amssymb,hyperref,tikz,tikz-cd,hyperref,bold-extra}
 \usepackage{physics}
 \usepackage{upgreek}
 \usepackage{halloweenmath}
-\usepackage[dvipsnames]{xcolor}
-\usepackage{tikz}
-\usepackage{tikz-cd}
-\usepackage{dirtytalk}
-\usepackage{graphics}
 
-% Some commonly used symbols 
+%some useful shortcuts:
+
+%to avoid writing \mathbb all the time 
 \newcommand{\R}{\mathbb{R}}  
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
+%common non-italic operators
 \newcommand{\Log}{\text{Log}\:}
 \newcommand{\im}{\text{im}\:}
 \newcommand{\coker}{\text{coker}\:}
+%font for letters representing categories
+\newcommand{\cat}[1]{\textsf{#1}}
 
-% Some common environments
+\title{Homework 69 \\
+\large MATH 420}
+\author{YourNameHere}
+\date{\today}
+
+\makeatletter
+\newcommand{\tpmod}[1]{{\@displayfalse\pmod{#1}}}
+\makeatother
+%no idea what this does, try removing it
+
+%common environments 
 \newenvironment{theorem}[2][Theorem]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 \newenvironment{lemma}[2][Lemma]{\begin{trivlist}
@@ -38,13 +50,17 @@
 \newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
 
 \begin{document}
+\maketitle
 
 \large 
-
 \vspace{0.05in}
-
-%document here ...
-
-% NOTE: this has been tested with overleaf. It may not work on pickier compilers. 
+\noindent \textsc{Exercise} 666 \\
+(i) Show that a morphism can have at most one inverse isomorphism. 
+\begin{solution}
+    Suppose that $f: x \to y$ is a morphism and $g,h: y \rightrightarrows x$ are such that $fg= 1_x = fh$ and $gf = 1_y = hf$. Then
+    \[
+        g = g 1_x = g (fh) = (gf) h = 1_y h = h
+    \]
+\end{solution}
 
 \end{document}
